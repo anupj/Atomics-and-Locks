@@ -2,11 +2,13 @@ use std::collections::VecDeque;
 use std::sync::Mutex;
 use std::time::Duration;
 use std::{sync, thread};
+use std::cell::Cell;
 
 fn main() {
     let queue = Mutex::new(VecDeque::new());
     // Here's our conditional variable
     let not_empty = sync::Condvar::new();
+    
 
     thread::scope(|s| {
         //First thread spawned
@@ -33,4 +35,10 @@ fn main() {
             thread::sleep(Duration::from_secs(1));
         }
     });
+}
+
+fn f(v: &Cell<Vec<i32>>) {
+    let mut v2 = v.take(); // Replaces the contents of the Cell with an empty Vec
+    v2.push(1);
+    v.set(v2); // Put the modified Vec back
 }

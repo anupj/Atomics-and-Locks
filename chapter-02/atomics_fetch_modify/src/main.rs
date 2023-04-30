@@ -2,6 +2,7 @@ use std::sync::atomic::AtomicUsize;
 use std::sync::atomic::Ordering::Relaxed;
 use std::thread;
 use std::time::Duration;
+
 fn main() {
     let num_done = &AtomicUsize::new(0);
 
