@@ -15,7 +15,7 @@ fn f() {
 
 fn main() {
     thread::scope(|s| {
-        for _ in 0..100 {
+        for _ in 0..20 {
             s.spawn(f);
         }
     });
